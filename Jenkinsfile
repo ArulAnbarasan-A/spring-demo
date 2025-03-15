@@ -20,13 +20,13 @@ pipeline {
 		}
 		stage('Build Docker Image') {
 			steps {
-				bat"""docker build -t %IMAGE_NAME%"""
+				bat """docker build -t %IMAGE_NAME% ."""
 			}
 		}
 		stage('Deploy') {
 			steps {
-				bat"""docker stop %CONTAINER_NAME% || exit 0 docker rm %CONTAINER_NAME% || exit 0"""
-				bat"""docker run -d -p 9030:9030 --name %CONTAINER_NAME% %IMAGE_NAME%"""
+				bat """docker stop %CONTAINER_NAME% || exit 0 docker rm %CONTAINER_NAME% || exit 0"""
+				bat """docker run -d -p 9030:9030 --name %CONTAINER_NAME% %IMAGE_NAME%"""
 			}
 		}
 	}
